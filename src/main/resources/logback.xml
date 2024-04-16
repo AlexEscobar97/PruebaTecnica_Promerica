@@ -1,0 +1,30 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/PruebaTecnicalogs.log</file> <!-- Ruta y nombre del archivo de registro -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <!-- Configurar el nivel de registro para el appender FILE -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!-- Configurar el nivel de registro para el root logger -->
+    <root level="debug">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+    <!-- Colocaremos los demas looger cuando se necesiten  -->
+    <!--<logger name="com.pfc2.weather" level="trace"/>
+   <logger name="com.pfc2.weather" level="debug"/>-->
+    <logger name="com.pfc2.weather" level="info"/>
+
+</configuration>

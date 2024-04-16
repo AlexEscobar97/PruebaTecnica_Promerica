@@ -1,0 +1,19 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'https://dev-wrgxxwxe1ljo6wp7.us.auth0.com/'
+          audiences: 'https://userapi'
+      client:
+        registration:
+          okta:
+            client-id: dev-wrgxxwxe1ljo6wp7.us.auth0.com
+            client-secret: -JMvA3imddrQMzRfURtJmRHrWcuvMo_zTGhAzM3KpU3nFyZKy1D24DekvDDJ559o
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/authorized/okta"
+            scope: read, write
+        provider:
+          okta:
+            authorization-uri: 'https://dev-wrgxxwxe1ljo6wp7.us.auth0.com/api/v2/'
+            token-uri: 'https://dev-wrgxxwxe1ljo6wp7.us.auth0.com/oauth/token'

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prueba-tecnica-deployment
+  namespace: josue080497
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Prueba-tecnica
+  template:
+    metadata:
+      labels:
+        app: Prueba-tecnica
+    spec:
+      containers:
+        - name: prueba-tecnica-container
+          image: josue080497/prueba-tecnica:tagname   # Cambiar a tu nombre de imagen y etiqueta correctos
+          ports:
+            - containerPort: 8080
+---
+apiVersion: autoscaling/v2beta2
+#kind: HorizontalPodAutoscaler
+metadata:
+  name: prueba-tecnica-hpa
+  namespace: josue080497
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: prueba-tecnica-deployment
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: 50

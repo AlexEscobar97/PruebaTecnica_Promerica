@@ -1,0 +1,42 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+	//id "org.springdoc.openapi-gradle-plugin" version "1.8.0"
+}
+
+group = 'com.pfc2.weather'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	// Dependencias de Spring Boot
+	implementation 'org.springframework.boot:spring-boot-starter-web' // Actualizado a la última versión
+	implementation 'org.springframework:spring-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+	//implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.19.0'
+
+	// Dependencia para JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// Dependencia para H2 Database
+	runtimeOnly 'com.h2database:h2'
+	//Dependencia para Authenticacion
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation "org.springframework.boot:spring-boot-starter-oauth2-authorization-server"
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.security:spring-security-oauth2-jose'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
